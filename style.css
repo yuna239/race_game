@@ -4,47 +4,52 @@ body {
     display: flex;
     justify-content: center; /* 水平方向の中央揃え */
     align-items: center;     /* 垂直方向の中央揃え */
-    min-height: 100vh;       /* 画面の高さいっぱいまで広げる */
-    background-color: #f0f0f0; /* 背景色 (お好みで変更可能) */
-    position: relative; /* 子要素（リトライボタン）の基準位置とする */
+    min-height: 100vh;       
+    background-color: #f0f0f0; 
+}
+
+/* 新しいコンテナのスタイル */
+#game-container {
+    /* キャンバスと同じサイズにする */
+    width: 400px; 
+    height: 600px;
+    /* ボタンの配置（position: absolute）の基準とする */
+    position: relative; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); 
 }
 
 /* ゲームを描画するキャンバス */
 #gameArea {
-    /* キャンバスが body の flexbox の影響を受けないように block に */
     display: block; 
-    border: 2px solid #333; /* 道路の外枠を強調 */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* 立体感を出すための影 */
-    background-color: #7AA874; /* 道路以外の背景（芝生など） */
+    border: 2px solid #333; 
+    /* コンテナの背景色を使うため、ここでは背景色を削除または透明に設定しても良い */
+    background-color: #7AA874; 
 }
 
 /* リトライボタン */
 #retryButton {
-    /* absolute: 親要素 (#gameArea が理想ですが、ここでは body を基準に)
-       キャンバスと重ねて表示するための必須設定 */
+    /* position: absolute の基準を #game-container に変更 */
     position: absolute;
     
-    /* body の子要素としてキャンバスと重ねて中央に配置 */
-    /* ここでは、キャンバスが body の中央にあるため、body を基準に中央に配置します。 */
+    /* #game-container の中央に配置 */
     top: 50%; 
     left: 50%;
     transform: translate(-50%, -50%); /* 要素自体のサイズを考慮して完全に中央へ移動 */
     
-    /* 見た目の設定 */
+    /* 見た目の設定 (変更なし) */
     padding: 15px 30px;
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
-    z-index: 10; /* キャンバス（通常z-index 0か1）より手前に表示 */
+    z-index: 10; 
     border: 3px solid #fff;
     border-radius: 8px;
-    background-color: #e74c3c; /* 赤系 */
+    background-color: #e74c3c; 
     color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.2s; /* ホバー時のアニメーション */
+    transition: background-color 0.2s;
 }
 
-/* ボタンにマウスが乗ったときの効果 */
 #retryButton:hover {
     background-color: #c0392b;
 }
