@@ -1,0 +1,53 @@
+body {
+    /* ページの余白を削除し、ゲームを画面中央に配置するための設定 */
+    margin: 0;
+    display: flex;
+    justify-content: center; /* 水平方向の中央揃え */
+    align-items: center;     /* 垂直方向の中央揃え */
+    min-height: 100vh;       /* 画面の高さいっぱいまで広げる */
+    background-color: #f0f0f0; /* 背景色 (お好みで変更可能) */
+    position: relative; /* 子要素（リトライボタン）の基準位置とする */
+}
+
+/* ゲームを描画するキャンバス */
+#gameArea {
+    /* キャンバスが body の flexbox の影響を受けないように block に */
+    display: block; 
+    border: 2px solid #333; /* 道路の外枠を強調 */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* 立体感を出すための影 */
+    background-color: #7AA874; /* 道路以外の背景（芝生など） */
+}
+
+/* リトライボタン */
+#retryButton {
+    /* absolute: 親要素 (#gameArea が理想ですが、ここでは body を基準に)
+       キャンバスと重ねて表示するための必須設定 */
+    position: absolute;
+    
+    /* body の子要素としてキャンバスと重ねて中央に配置 */
+    /* ここでは、キャンバスが body の中央にあるため、body を基準に中央に配置します。 */
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); /* 要素自体のサイズを考慮して完全に中央へ移動 */
+    
+    /* 見た目の設定 */
+    padding: 15px 30px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10; /* キャンバス（通常z-index 0か1）より手前に表示 */
+    border: 3px solid #fff;
+    border-radius: 8px;
+    background-color: #e74c3c; /* 赤系 */
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.2s; /* ホバー時のアニメーション */
+}
+
+/* ボタンにマウスが乗ったときの効果 */
+#retryButton:hover {
+    background-color: #c0392b;
+}
+
+/* JavaScriptで非表示にするための設定は game.js で行われています */
+/* style="display: none;" は index.html のボタンタグに直接記述されています */
